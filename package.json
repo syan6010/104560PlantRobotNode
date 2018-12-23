@@ -1,0 +1,21 @@
+{
+  "name": "mybot",
+  "version": "1.0.0",
+  "description": "a line bot app ",
+  "engines": {
+    "node": "11.4.0"
+  },
+  "keywords": [
+    "linebot",
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "ben",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "linebot": "^1.4.1"
+  }
+}
