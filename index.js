@@ -43,7 +43,7 @@ bot.on('message', function(event) {
          if (Number(event.message.text)<languages.length)
             setLanguage(myId,Number(event.message.text));
       }else{
-         translate(event.message.text, {to: languages[users[myId].defaultLangNum].code}).then(res => {
+         translate(event.message.text, {to: 'ru'}).then(res => {
          bot.push(myId,res.text);
          }).catch(err => {
             console.error(err);
