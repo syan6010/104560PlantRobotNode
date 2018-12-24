@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "google-translate-api": "^2.3.0",
     "linebot": "^1.4.1"
   }
 }
