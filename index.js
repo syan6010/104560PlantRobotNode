@@ -1,6 +1,24 @@
 var linebot = require('linebot');
 var express = require('express');
+var firebase = require("firebase");
+ // Initialize Firebase
+var config = {
+   apiKey: "AIzaSyAuYBBz0Lm2RJUA5b5BrDcLgZz6DsftlxY",
+   authDomain: "mytest-5cc3f.firebaseapp.com",
+   databaseURL: "https://mytest-5cc3f.firebaseio.com",
+   projectId: "mytest-5cc3f",
+   storageBucket: "mytest-5cc3f.appspot.com",
+   messagingSenderId: "861511084672"
+};
 
+firebase.initializeApp(config);
+
+var db = firebase.database();
+var ref = db.ref("/");
+var value = {
+ Test1: "t1",
+ Test2: "t2"
+}
 
 var bot = linebot({
   channelId: '1627664670',
@@ -15,7 +33,7 @@ app.post('/linewebhook', linebotParser);
 
 bot.on('message', function (event) {
    event.reply(event.message.text).then(function (data) {
-     // success
+     ref.set({YourName: event.message.text})
    }).catch(function (error) {
      // error
    });
