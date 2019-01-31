@@ -94,6 +94,10 @@ bot.on('message', function (event) {
                           previewImageUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png'
                       });
                       break;
+                  case '重設' :
+                      myStep = -1;
+                      event.reply('ok輸入y開始重新設定');
+                      break;
                   default:
                       event.reply('我不能這麼做');
               }
