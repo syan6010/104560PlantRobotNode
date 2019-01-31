@@ -53,22 +53,28 @@ const linebotParser = bot.parser();
 app.post('/linewebhook', linebotParser);
 
 var users=[];
-var totalSteps=3;
+var totalSteps=2;
 
 
 bot.on('message', function (event) {
   // var myReply='';
   if (event.message.type === 'text') {
-     // myReply=processText(event.message.text);
-      let thisId = event.source.userId;
-      if (users[myId] == undefined){
-          users[myId]=[];
-          users[myId].userId = thisId;
-          users[myId].step = -1;
-      }
-      let stepNow = users[myId].step;
-      if (stepNow === -1) {
-          sendMessage(event, '歡迎來到palntrobot');
+      if (event.message.type === 'text') {
+          var myId=event.source.userId;
+          if (users[myId]==undefined){
+              users[myId]=[];
+              users[myId].userId=myId;
+              users[myId].step=-1;
+          }
+          var myStep=users[myId].step;
+          if (myStep===-1)
+              event.reply('hello first');
+          else{
+              if (myStep == 0)
+                  event.reply('hello second');
+          }
+          myStep++;
+          users[myId].step=myStep;
       }
 
   }
