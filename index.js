@@ -87,6 +87,7 @@ bot.on('message', function (event) {
                       break;
                   case 'save':
                       db.set(value);
+                      break;
                   default:
                       event.reply('我不能這麼做');
               }
