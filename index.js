@@ -65,10 +65,10 @@ bot.on('message', function (event) {
           var myStep=users[myId].step;
           if (myStep === 0 ) {
               event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
-              console.log('hello');
           }
           else if(myStep === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
+              ref.set(value);
           }
           else if(myStep === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
@@ -84,9 +84,6 @@ bot.on('message', function (event) {
                           originalContentUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png',
                           previewImageUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png'
                       });
-                      break;
-                  case 'save':
-                      db.set(value);
                       break;
                   default:
                       event.reply('我不能這麼做');
