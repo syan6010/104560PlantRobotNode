@@ -50,6 +50,10 @@ app.post('/linewebhook', linebotParser);
 
 var users=[];
 var totalSteps=3;
+let deviceId;
+let name;
+let plantType;
+let lineId;
 
 
 bot.on('message', function (event) {
@@ -62,30 +66,26 @@ bot.on('message', function (event) {
               users[myId].userId=myId;
               users[myId].step=0;
           }
+          lineId = event.source.userId;
           var myStep=users[myId].step;
           if (myStep === 0 ) {
               event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
           }
           else if(myStep === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
-              firebase.database().ref(`users/${event.source.userId}`).set({
-                  deviceId: event.message.text
-              });
+              deviceId = event.message.text;
 
           }
           else if(myStep === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
-              firebase.database().ref(`users/${event.source.userId}`).set({
-                  plantType: event.message.text
-              });
+              plantType = event.message.text;
           }
           else if(myStep === 3) {
               event.reply('謝謝接下來我們馬上就可以開始使用了！！')
-              firebase.database().ref(`users/${event.source.userId}`).set({
-                  name: event.message.text
-              });
+              name = event.message.text;
           }
           else if(myStep === 99) {
+              writeUserData(deviceId, plantType, name);
               switch (event.message.text) {
                   case 'help' :
                       event.reply({
@@ -127,7 +127,15 @@ function sendMessage(eve,msg){
     });
 }
 
-
+function writeUserData(deviceId, plantType, name) {
+    firebase.database().ref('users/' + lineId).set({
+        username: deviceId,
+        plantType: plantType,
+        name : name,
+        dht : 0,
+        temperature : 0
+    });
+}
 
 // function processText(myMsg){
 //   var myResult='';
