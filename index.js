@@ -68,7 +68,8 @@ bot.on('message', function (event) {
           }
           else if(myStep === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
-              ref.set(value);
+              writeUserData(event.source.userId, event.message.text);
+
           }
           else if(myStep === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
@@ -115,6 +116,16 @@ function sendMessage(eve,msg){
     }).catch(function(error) {
         // error
         return false;
+    });
+}
+
+function writeUserData(userId, deviceId) {
+    firebase.database().ref('users/' + userId).set({
+        deviceId: deviceId,
+        dht: null,
+        name : null,
+        plantType : null,
+        temperature : null
     });
 }
 
