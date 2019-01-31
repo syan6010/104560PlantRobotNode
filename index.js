@@ -93,7 +93,23 @@ bot.on('message', function (event) {
                           var data = snapshot.val();
                           switch (data) {
                               case '薄荷' :
-                                  return event.reply(['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']);
+                                  return event.reply(['Line 1', {
+                                      type: 'template',
+                                      altText: 'this is a confirm template',
+                                      template: {
+                                          type: 'confirm',
+                                          text: 'Are you sure?',
+                                          actions: [{
+                                              type: 'message',
+                                              label: 'Yes',
+                                              text: 'yes'
+                                          }, {
+                                              type: 'message',
+                                              label: 'No',
+                                              text: 'no'
+                                          }]
+                                      }
+                                  }]);
                               default :
                                   event.reply('這種植物我建議你還是別種了');
                           }
