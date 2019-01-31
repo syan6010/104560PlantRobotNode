@@ -17,12 +17,6 @@ var config = {
 firebase.initializeApp(config);
 
 
-var db = firebase.database();
-var ref = db.ref("/");
-var value = {
- Test1: "t1",
- Test2: "t2"
-};
 
 var bot = linebot({
   channelId: '1627664670',
@@ -54,6 +48,7 @@ let deviceId;
 let name;
 let plantType;
 let lineId;
+let firebaseurl = 'https://mytest-5cc3f.firebaseio.com/.json';
 
 
 bot.on('message', function (event) {
