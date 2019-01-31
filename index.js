@@ -16,17 +16,13 @@ var config = {
 
 firebase.initializeApp(config);
 
-const step = 2;
-
-
-
 
 var db = firebase.database();
 var ref = db.ref("/");
 var value = {
  Test1: "t1",
  Test2: "t2"
-}
+};
 
 var bot = linebot({
   channelId: '1627664670',
@@ -53,7 +49,7 @@ const linebotParser = bot.parser();
 app.post('/linewebhook', linebotParser);
 
 var users=[];
-var totalSteps=2;
+var totalSteps=3;
 
 
 bot.on('message', function (event) {
@@ -64,14 +60,23 @@ bot.on('message', function (event) {
           if (users[myId]==undefined){
               users[myId]=[];
               users[myId].userId=myId;
-              users[myId].step=-1;
+              users[myId].step=0;
           }
           var myStep=users[myId].step;
-          if (myStep===-1)
-              event.reply('hello first');
+          if (myStep === 0 ) {
+              event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
+              event.reply({
+                  type: 'sticker',
+                  packageId: 1,
+                  stickerId: 1
+              });
+          }
           else{
-              if (myStep == 0)
+              if (myStep === 1)
                   event.reply('hello second');
+              else if(mystep === 2) {
+                  event.reply('');
+              }
           }
           myStep++;
           users[myId].step=myStep;
