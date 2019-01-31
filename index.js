@@ -85,6 +85,8 @@ bot.on('message', function (event) {
                           previewImageUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png'
                       });
                       break;
+                  case 'save':
+                      db.set(value);
                   default:
                       event.reply('我不能這麼做');
               }
