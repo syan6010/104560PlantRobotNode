@@ -90,7 +90,7 @@ bot.on('message', function (event) {
           }
           myStep++;
           users[myId].step=myStep;
-          db.set(value);
+
           
           if(myStep > 3) {
               users[myId].step = 99;
