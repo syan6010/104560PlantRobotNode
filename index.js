@@ -68,14 +68,22 @@ bot.on('message', function (event) {
           }
           else if(myStep === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
-              writeUserData(event.source.userId, event.message.text);
+              firebase.database().ref(`users/${event.source.userId}`).set({
+                  deviceId: event.message.text
+              });
 
           }
           else if(myStep === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
+              firebase.database().ref(`users/${event.source.userId}`).set({
+                  plantType: event.message.text
+              });
           }
           else if(myStep === 3) {
               event.reply('謝謝接下來我們馬上就可以開始使用了！！')
+              firebase.database().ref(`users/${event.source.userId}`).set({
+                  name: event.message.text
+              });
           }
           else if(myStep === 99) {
               switch (event.message.text) {
@@ -119,11 +127,7 @@ function sendMessage(eve,msg){
     });
 }
 
-function writeUserData(userId, deviceId) {
-    firebase.database().ref('users/' + userId).set({
-        deviceId: deviceId
-    });
-}
+
 
 // function processText(myMsg){
 //   var myResult='';
