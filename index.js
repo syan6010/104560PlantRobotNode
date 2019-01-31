@@ -91,7 +91,12 @@ bot.on('message', function (event) {
                   case 'ok' :
                       firebase.database().ref(`users/${lineId}/plantType`).once('value', function (snapshot) {
                           var data = snapshot.val();
-                          event.reply(data);
+                          switch (data) {
+                              case '薄荷' :
+                                  return event.reply(['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']);
+                              default :
+                                  event.reply('這種植物我建議你還是別種了');
+                          }
                       });
                       break;
                   case '重設' :
