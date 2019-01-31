@@ -95,21 +95,21 @@ bot.on('message', function (event) {
                               case '薄荷' :
                                   return event.reply(['Line 1', {
                                       type: 'template',
-                                      altText: 'this is a confirm template',
+                                      altText: 'Buttons alt text',
                                       template: {
-                                          type: 'confirm',
-                                          text: 'Are you sure?',
-                                          actions: [{
-                                              type: 'message',
-                                              label: 'Yes',
-                                              text: 'yes'
-                                          }, {
-                                              type: 'message',
-                                              label: 'No',
-                                              text: 'no'
-                                          }]
-                                      }
+                                          type: 'buttons',
+                                          thumbnailImageUrl: 'https://i2.kknews.cc/SIG=m8bseq/o0p0008q8qoq4pn7493.jpg',
+                                          title: 'My button sample',
+                                          text: 'Hello, my button',
+                                          actions: [
+                                              { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
+                                              { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
+                                              { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
+                                              { label: 'Say message', type: 'message', text: 'Rice=米' },
+                                          ],
+                                      },
                                   }]);
+
                               default :
                                   event.reply('這種植物我建議你還是別種了');
                           }
