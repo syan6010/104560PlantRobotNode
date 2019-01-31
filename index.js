@@ -68,14 +68,33 @@ bot.on('message', function (event) {
           }
           else if(myStep === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
-              event.reply('hello');
+              
           }
           else if(myStep === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
           }
-
+          else if(myStep === 3) {
+              event.reply('謝謝接下來我們馬上就可以開始使用了！！')
+          }
+          else if(myStep === 99) {
+              switch (event.message.text) {
+                  case 'help' :
+                      event.reply({
+                          type: 'image',
+                          originalContentUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png',
+                          previewImageUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png'
+                      });
+                      break;
+                  default:
+                      event.reply('我不能這麼做');
+              }
+          }
           myStep++;
           users[myId].step=myStep;
+          
+          if(myStep > 3) {
+              users[myId].step = 99;
+          }
       }
 
   }
