@@ -92,8 +92,8 @@ bot.on('message', function (event) {
                       firebase.database().ref(`users/${lineId}/plantType`).once('value', function (snapshot) {
                           var data = snapshot.val();
                           event.reply(data);
-                          break;
                       });
+                      break;
                   case '重設' :
                       myStep = -1;
                       event.reply('ok輸入y開始重新設定');
