@@ -65,19 +65,15 @@ bot.on('message', function (event) {
           var myStep=users[myId].step;
           if (myStep === 0 ) {
               event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
-              event.reply({
-                  type: 'sticker',
-                  packageId: 1,
-                  stickerId: 1
-              });
           }
-          else{
-              if (myStep === 1)
-                  event.reply('hello second');
-              else if(mystep === 2) {
-                  event.reply('');
-              }
+          else if(myStep === 1) {
+              event.reply('可以告訴我你的植物種類嗎？');
+              event.reply('hello');
           }
+          else if(myStep === 2) {
+              event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
+          }
+
           myStep++;
           users[myId].step=myStep;
       }
