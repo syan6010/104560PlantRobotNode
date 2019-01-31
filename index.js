@@ -121,11 +121,7 @@ function sendMessage(eve,msg){
 
 function writeUserData(userId, deviceId) {
     firebase.database().ref('users/' + userId).set({
-        deviceId: deviceId,
-        dht: null,
-        name : null,
-        plantType : null,
-        temperature : null
+        deviceId: deviceId
     });
 }
 
