@@ -20,8 +20,18 @@ firebase.initializeApp(config);
 var db = firebase.database();
 var ref = db.ref("/");
 var value = {
- Test1: "t1",
- Test2: "t2"
+ "users" : {
+     "001" : {
+         "deviceId" : "12345",
+         "name" : "ben",
+         "plant_type" : "sunflower"
+     },
+     "002" : {
+         "deviceId" : "123456",
+         "name" : "ben01",
+         "plant_type" : "owlflower"
+     }
+ }
 };
 
 var bot = linebot({
@@ -68,7 +78,7 @@ bot.on('message', function (event) {
           }
           else if(myStep === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
-              
+              db.set(value);
           }
           else if(myStep === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
