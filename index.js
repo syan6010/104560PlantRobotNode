@@ -69,14 +69,13 @@ bot.on('message', function (event) {
           else if(myStep === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
               deviceId = event.message.text;
-
           }
           else if(myStep === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
               plantType = event.message.text;
           }
           else if(myStep === 3) {
-              event.reply('謝謝接下來我們馬上就可以開始使用了！！')
+              event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊');
               name = event.message.text;
           }
           else if(myStep === 99) {
@@ -89,6 +88,11 @@ bot.on('message', function (event) {
                           previewImageUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png'
                       });
                       break;
+                  case 'ok' :
+                      firebase.database().ref(`users/${lineId}/plantType`).once('value', function (snapshot) {
+                          var data = snapshot.val();
+                          event.reply(data);
+                      });
                   case '重設' :
                       myStep = -1;
                       event.reply('ok輸入y開始重新設定');
