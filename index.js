@@ -68,8 +68,6 @@ bot.on('message', function (event) {
           }
           else if(myStep === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
-              db.set(value);
-
           }
           else if(myStep === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
