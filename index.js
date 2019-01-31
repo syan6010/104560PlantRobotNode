@@ -16,6 +16,11 @@ var config = {
 
 firebase.initializeApp(config);
 
+const step = 2;
+
+
+
+
 var db = firebase.database();
 var ref = db.ref("/");
 var value = {
@@ -47,46 +52,69 @@ const app = express();
 const linebotParser = bot.parser();
 app.post('/linewebhook', linebotParser);
 
+var users=[];
+var totalSteps=3;
+
 
 bot.on('message', function (event) {
-  var myReply='';
+  // var myReply='';
   if (event.message.type === 'text') {
-     myReply=processText(event.message.text);
-  }    
+     // myReply=processText(event.message.text);
+      let thisId = event.source.userId;
+      if (users[myId] == undefined){
+          users[myId]=[];
+          users[myId].userId = thisId;
+          users[myId].step = -1;
+      }
+      let stepNow = users[myId].step;
+      if (stepNow === -1) {
+          sendMessage(event, '歡迎來到palntrobot');
+      }
 
-  event.reply(myReply).then(function(data) {
-    // success 
-    console.log(myReply);
-  }).catch(function(error) {
-    // error 
-    console.log('error');
-  });
+  }
+  // event.reply(myReply).then(function(data) {
+  //   // success
+  //   console.log(myReply);
+  // }).catch(function(error) {
+  //   // error
+  //   console.log('error');
+  // });
 });
 
-function processText(myMsg){
-  var myResult='';
-  
-  if (myMsg==='led開' || myMsg==='LED開'){
-     if (!deviceIsConnected())
-        myResult='裝置未連接！';
-     else{
-        myResult='LED已打開！';
-        rgbled.setColor('#FFFFFF');
-     }
-  }
-  else if (myMsg==='led關' || myMsg==='LED關'){
-     if (!deviceIsConnected())
-        myResult='裝置未連接！';
-     else{
-        myResult='LED已關閉！';
-        rgbled.setColor('#000000');
-     }
-  }
-  else{
-     myResult='抱歉，我不懂這句話的意思！';
-  }
-  return myResult;
+function sendMessage(eve,msg){
+    eve.reply(msg).then(function(data) {
+        // success
+        return true;
+    }).catch(function(error) {
+        // error
+        return false;
+    });
 }
+
+// function processText(myMsg){
+//   var myResult='';
+//
+//   if (myMsg==='led開' || myMsg==='LED開'){
+//      if (!deviceIsConnected())
+//         myResult='裝置未連接！';
+//      else{
+//         myResult='LED已打開！';
+//         rgbled.setColor('#FFFFFF');
+//      }
+//   }
+//   else if (myMsg==='led關' || myMsg==='LED關'){
+//      if (!deviceIsConnected())
+//         myResult='裝置未連接！';
+//      else{
+//         myResult='LED已關閉！';
+//         rgbled.setColor('#000000');
+//      }
+//   }
+//   else{
+//      myResult='抱歉，我不懂這句話的意思！';
+//   }
+//   return myResult;
+// }
 
 
 function deviceIsConnected(){
