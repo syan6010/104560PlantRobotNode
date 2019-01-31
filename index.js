@@ -49,7 +49,7 @@ const linebotParser = bot.parser();
 app.post('/linewebhook', linebotParser);
 
 var users=[];
-
+var totalSteps=3;
 
 
 bot.on('message', function (event) {
@@ -68,6 +68,7 @@ bot.on('message', function (event) {
           }
           else if(myStep === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
+              db.set(value);
 
           }
           else if(myStep === 2) {
