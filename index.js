@@ -92,6 +92,7 @@ bot.on('message', function (event) {
                       firebase.database().ref(`users/${lineId}/plantType`).once('value', function (snapshot) {
                           var data = snapshot.val();
                           event.reply(data);
+                          break;
                       });
                   case '重設' :
                       myStep = -1;
