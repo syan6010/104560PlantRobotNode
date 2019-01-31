@@ -129,7 +129,7 @@ function sendMessage(eve,msg){
 
 function writeUserData(deviceId, plantType, name) {
     firebase.database().ref('users/' + lineId).set({
-        username: deviceId,
+        deviceId: deviceId,
         plantType: plantType,
         name : name,
         dht : 0,
