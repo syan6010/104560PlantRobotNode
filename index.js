@@ -143,7 +143,14 @@ bot.on('message', function (event) {
                                 event.reply(data);
                             } 
                             else {
-                                event.reply('hello world')
+                                firebase.database().ref('users/' + lineId).set({
+                                    deviceId: deviceId,
+                                    plantType: plantType,
+                                    name : name,
+                                    dht : 0,
+                                    temperature : 0,
+                                    steps : 0
+                                });
                             }
                         });
                       break;
@@ -194,15 +201,3 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 
-
-firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  }, function(error) {
-    if (error) {
-      // The write failed...
-    } else {
-      // Data saved successfully!
-    }
-});
