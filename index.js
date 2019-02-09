@@ -172,7 +172,14 @@ function writeUserData(deviceId, plantType, name) {
 }
 
 let updateStep = values => {
-    firebase.database().ref(`users/${lineId}`).update({steps : values});
+    firebase.database().ref('users/' + lineId).set({
+        deviceId: 0,
+        plantType: 0,
+        name : 0,
+        dht : 0,
+        temperature : 0,
+        steps : values
+    });
 }
 
 
