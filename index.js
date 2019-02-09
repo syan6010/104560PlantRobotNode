@@ -136,7 +136,7 @@ bot.on('message', function (event) {
                        }
                       break;
                   case 'hello' :
-                      firebase.database().ref(`users/${lineId}/steps`).set({
+                      firebase.database().ref(`users/${lineId}`).set({
                         steps: 0
                       }, function(error) {
                         if (error) {
