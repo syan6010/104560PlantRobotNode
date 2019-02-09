@@ -144,9 +144,9 @@ bot.on('message', function (event) {
                             } 
                             else {
                                 firebase.database().ref('users/' + lineId).set({
-                                    deviceId: 0,
-                                    plantType: 0,
-                                    name : 0,
+                                    deviceId: deviceId,
+                                    plantType: plantType,
+                                    name : name,
                                     dht : 0,
                                     temperature : 0,
                                     steps : 0
