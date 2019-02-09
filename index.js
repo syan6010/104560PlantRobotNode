@@ -48,20 +48,20 @@ let deviceId;
 let name;
 let plantType;
 let lineId;
-let firebaseurl = 'https://mytest-5cc3f.firebaseio.com/.json';
 
 
 bot.on('message', function (event) {
   // var myReply='';
   if (event.message.type === 'text') {
       if (event.message.type === 'text') {
-          var myId=event.source.userId;
+          lineId = event.source.userId;
+          var myId = event.source.userId;
           if (users[myId]==undefined){
               users[myId]=[];
               users[myId].userId=myId;
               users[myId].step=0;
           }
-          lineId = event.source.userId;
+          
           var myStep=users[myId].step;
           if (myStep === 0 ) {
               event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
@@ -135,6 +135,13 @@ bot.on('message', function (event) {
                           rgbled.setColor('#000000');
                        }
                       break;
+                  case 'hello' :
+                    firebase.database().ref(`users/${lineId}/steps`).once('value', function (snapshot) {
+                          var data = snapshot.val();
+                          event.reply(data);
+                      });
+                      break;
+                      
                   default:
                       event.reply('我不能這麼做');
               }
@@ -151,15 +158,7 @@ bot.on('message', function (event) {
   }
 });
 
-function sendMessage(eve,msg){
-    eve.reply(msg).then(function(data) {
-        // success
-        return true;
-    }).catch(function(error) {
-        // error
-        return false;
-    });
-}
+
 
 function writeUserData(deviceId, plantType, name) {
     firebase.database().ref('users/' + lineId).set({
@@ -170,31 +169,6 @@ function writeUserData(deviceId, plantType, name) {
         temperature : 0
     });
 }
-
-// function processText(myMsg){
-//   var myResult='';
-//
-//   if (myMsg==='led開' || myMsg==='LED開'){
-//      if (!deviceIsConnected())
-//         myResult='裝置未連接！';
-//      else{
-//         myResult='LED已打開！';
-//         rgbled.setColor('#FFFFFF');
-//      }
-//   }
-//   else if (myMsg==='led關' || myMsg==='LED關'){
-//      if (!deviceIsConnected())
-//         myResult='裝置未連接！';
-//      else{
-//         myResult='LED已關閉！';
-//         rgbled.setColor('#000000');
-//      }
-//   }
-//   else{
-//      myResult='抱歉，我不懂這句話的意思！';
-//   }
-//   return myResult;
-// }
 
 
 function deviceIsConnected(){
