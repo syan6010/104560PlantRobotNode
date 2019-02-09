@@ -84,11 +84,11 @@ bot.on('message', function (event) {
           }
           else if(qAndAStep === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
-              firebase.database().ref(`users/${lineId}/plantType`).update({plantType : event.message.text});
+              firebase.database().ref(`users/${lineId}`).update({plantType : event.message.text});
           }
           else if(qAndAStep === 3) {
               event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊');
-              firebase.database().ref(`users/${lineId}/name`).update({name : event.message.text});
+              firebase.database().ref(`users/${lineId}`).update({name : event.message.text});
           }
           else if(qAndAStep === 99) {
               switch (event.message.text) {
@@ -146,25 +146,6 @@ bot.on('message', function (event) {
                           rgbled.setColor('#000000');
                        }
                       break;
-                  case 'hello' :
-                        let data;
-                        firebase.database().ref(`users/${lineId}/steps`).once('value', function (snapshot) {
-                            if(snapshot.exists()) {
-                                data = snapshot.val();
-                                event.reply(data);
-                            } 
-                            else {
-                                firebase.database().ref('users/' + lineId).set({
-                                    deviceId: 0,
-                                    plantType: 0,
-                                    name : 0,
-                                    dht : 0,
-                                    temperature : 0,
-                                    steps : 0
-                                });
-                            }
-                        });
-                      break;
                   default:
                       event.reply('我不能這麼做');
               }
@@ -193,14 +174,7 @@ function writeUserData(deviceId, plantType, name) {
 }
 
 let updateStep = values => {
-    firebase.database().ref('users/' + lineId).set({
-        deviceId: 0,
-        plantType: 0,
-        name : 0,
-        dht : 0,
-        temperature : 0,
-        steps : values
-      });
+    firebase.database().ref(`users/${lineId}`).update({steps : values});
 }
 
 
