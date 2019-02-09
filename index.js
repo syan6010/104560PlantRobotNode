@@ -154,7 +154,7 @@ bot.on('message', function (event) {
           updateStep(qAndAStep + 1);
           
           if(qAndAStep > 3) {
-            updateStep(99);
+            //updateStep(99);
           };
     }
 
