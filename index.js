@@ -119,8 +119,22 @@ bot.on('message', function (event) {
                       myStep = -1;
                       event.reply('ok輸入y開始重新設定');
                       break;
-                  case 'ben' :
-                      event.reply('ha ha ha');
+                  case 'led開' :
+                      if (!deviceIsConnected())
+                          event.reply('裝置未連接');
+                      else{
+                          myResult='LED已打開！';
+                          rgbled.setColor('#FFFFFF');
+                      }
+                      break;
+                  case 'led關' :
+                      if (!deviceIsConnected())
+                          event.reply('裝置未連接');
+                      else{
+                          myResult='LED已關閉！';
+                          rgbled.setColor('#000000');
+                       }
+                      break;
                   default:
                       event.reply('我不能這麼做');
               }
@@ -135,13 +149,6 @@ bot.on('message', function (event) {
       }
 
   }
-  // event.reply(myReply).then(function(data) {
-  //   // success
-  //   console.log(myReply);
-  // }).catch(function(error) {
-  //   // error
-  //   console.log('error');
-  // });
 });
 
 function sendMessage(eve,msg){
