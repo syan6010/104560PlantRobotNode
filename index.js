@@ -119,6 +119,8 @@ bot.on('message', function (event) {
                       myStep = -1;
                       event.reply('ok輸入y開始重新設定');
                       break;
+                  case 'ben' :
+                      event.reply('ha ha ha');
                   default:
                       event.reply('我不能這麼做');
               }
