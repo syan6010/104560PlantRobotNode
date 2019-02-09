@@ -136,12 +136,23 @@ bot.on('message', function (event) {
                        }
                       break;
                   case 'hello' :
-                    firebase.database().ref(`users/${lineId}/steps`).once('value', function (snapshot) {
-                          var data = snapshot.val();
-                          event.reply('data');
+                      firebase.database().ref(`users/${lineId}/steps`).set({
+                        steps: 0
+                      }, function(error) {
+                        if (error) {
+                            firebase.database().ref('users/' + lineId).set({
+                                deviceId: 0,
+                                plantType: 0,
+                                name : 0,
+                                dht : 0,
+                                temperature : 0,
+                                steps : 0
+                            });
+                        } else {
+                          // Data saved successfully!
+                        }
                       });
                       break;
-                      
                   default:
                       event.reply('我不能這麼做');
               }
@@ -171,6 +182,8 @@ function writeUserData(deviceId, plantType, name) {
 }
 
 
+
+
 function deviceIsConnected(){
   if (myBoard===undefined)
      return false;
@@ -184,4 +197,18 @@ function deviceIsConnected(){
 var server = app.listen(process.env.PORT || 8080, function() {
   var port = server.address().port;
   console.log("App now running on port", port);
+});
+
+
+
+firebase.database().ref('users/' + userId).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  }, function(error) {
+    if (error) {
+      // The write failed...
+    } else {
+      // Data saved successfully!
+    }
 });
