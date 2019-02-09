@@ -137,7 +137,7 @@ bot.on('message', function (event) {
                       break;
                   case 'hello' :
                         let data;
-                        db.ref(`users/${lineId}/steps`).once('value', function (snapshot) {
+                        firebase.database().ref(`users/${lineId}/steps`).once('value', function (snapshot) {
                             if(snapshot.exists()) {
                                 data = snapshot.val();
                                 event.reply(data);
