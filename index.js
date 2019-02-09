@@ -138,7 +138,7 @@ bot.on('message', function (event) {
                   case 'hello' :
                     firebase.database().ref(`users/${lineId}/steps`).once('value', function (snapshot) {
                           var data = snapshot.val();
-                          event.reply(data);
+                          event.reply('data');
                       });
                       break;
                       
