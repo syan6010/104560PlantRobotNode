@@ -143,14 +143,7 @@ bot.on('message', function (event) {
                                 event.reply(data);
                             } 
                             else {
-                                firebase.database().ref('users/' + lineId).set({
-                                    deviceId: deviceId,
-                                    plantType: plantType,
-                                    name : name,
-                                    dht : 0,
-                                    temperature : 0,
-                                    steps : 0
-                                });
+                                event.reply('hello world')
                             }
                         });
                       break;
