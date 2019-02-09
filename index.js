@@ -48,7 +48,7 @@ let deviceId;
 let name;
 let plantType;
 let lineId;
-let steps;
+let qAndAStep;
 let textFromUser;
 
 
@@ -60,8 +60,8 @@ bot.on('message', function (event) {
 
           firebase.database().ref(`users/${lineId}/steps`).once('value', function (snapshot) {
               if(snapshot.exists()) {
-                  steps = snapshot.val();
-                  event.reply(steps);
+                  qAndAStep = snapshot.val();
+                  event.reply(qAndAStep);
               } 
               else {
                   firebase.database().ref('users/' + lineId).set({
@@ -75,22 +75,22 @@ bot.on('message', function (event) {
               }
            });
 
-          if (steps === 0 ) {
+          if (qAndAStep === 0 ) {
               event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
           }
-          else if(steps === 1) {
+          else if(qAndAStep === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
               firebase.database().ref(`users/${lineId}`).update({deviceId : event.message.text});
           }
-          else if(steps === 2) {
+          else if(qAndAStep === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
               firebase.database().ref(`users/${lineId}/plantType`).update({plantType : event.message.text});
           }
-          else if(steps === 3) {
+          else if(qAndAStep === 3) {
               event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊');
               firebase.database().ref(`users/${lineId}/name`).update({name : event.message.text});
           }
-          else if(steps === 99) {
+          else if(qAndAStep === 99) {
               switch (event.message.text) {
                   case 'help' :
                       event.reply({
@@ -170,11 +170,11 @@ bot.on('message', function (event) {
               }
           }
           
-          updateStep(steps + 1);
+          updateStep(qAndAStep + 1);
           
-          if(steps > 3) {
+          if(qAndAStep > 3) {
             updateStep(99);
-          }
+          };
     }
 
   
