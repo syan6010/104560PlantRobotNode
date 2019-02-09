@@ -136,22 +136,23 @@ bot.on('message', function (event) {
                        }
                       break;
                   case 'hello' :
-                      firebase.database().ref(`users/${lineId}`).set({
-                        deviceId: 0,
-                        plantType: 0,
-                        name : 0,
-                        dht : 0,
-                        temperature : 0,
-                        steps : 0
-                      }, function(error) {
-                        if (error) {
-                            firebase.database().ref('users/' + lineId).set({
-                              
-                            });
-                        } else {
-                          // Data saved successfully!
-                        }
-                      });
+                        let data;
+                        db.ref(`users/${lineId}/steps`).once('value', function (snapshot) {
+                            if(snapshot.exists()) {
+                                data = snapshot.val();
+                                event.reply(data);
+                            } 
+                            else {
+                                firebase.database().ref('users/' + lineId).set({
+                                    deviceId: 0,
+                                    plantType: 0,
+                                    name : 0,
+                                    dht : 0,
+                                    temperature : 0,
+                                    steps : 0
+                                });
+                            }
+                        });
                       break;
                   default:
                       event.reply('我不能這麼做');
