@@ -48,39 +48,50 @@ let deviceId;
 let name;
 let plantType;
 let lineId;
+let steps;
+let textFromUser;
 
 
 bot.on('message', function (event) {
   // var myReply='';
-  if (event.message.type === 'text') {
-      if (event.message.type === 'text') {
+     if (event.message.type === 'text') {
           lineId = event.source.userId;
-          var myId = event.source.userId;
-          if (users[myId]==undefined){
-              users[myId]=[];
-              users[myId].userId=myId;
-              users[myId].step=0;
-          }
-          
-          var myStep=users[myId].step;
-          if (myStep === 0 ) {
+          textFromUser = event.message.text;
+
+          firebase.database().ref(`users/${lineId}/steps`).once('value', function (snapshot) {
+              if(snapshot.exists()) {
+                  steps = snapshot.val();
+                  event.reply(steps);
+              } 
+              else {
+                  firebase.database().ref('users/' + lineId).set({
+                      deviceId: 0,
+                      plantType: 0,
+                      name : 0,
+                      dht : 0,
+                      temperature : 0,
+                      steps : 0
+                   });
+              }
+           });
+
+          if (steps === 0 ) {
               event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
           }
-          else if(myStep === 1) {
+          else if(steps === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
-              deviceId = event.message.text;
+              firebase.database().ref(`users/${lineId}`).update({deviceId : textFromUser});
           }
-          else if(myStep === 2) {
+          else if(steps === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
-              plantType = event.message.text;
+              firebase.database().ref(`users/${lineId}/plantType`).update({plantType : textFromUser});
           }
-          else if(myStep === 3) {
+          else if(steps === 3) {
               event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊');
-              name = event.message.text;
+              firebase.database().ref(`users/${lineId}/name`).update({name : textFromUser});
           }
-          else if(myStep === 99) {
-              writeUserData(deviceId, plantType, name);
-              switch (event.message.text) {
+          else if(steps === 99) {
+              switch (textFromUser) {
                   case 'help' :
                       event.reply({
                           type: 'image',
@@ -158,16 +169,15 @@ bot.on('message', function (event) {
                       event.reply('我不能這麼做');
               }
           }
-          myStep++;
-          users[myId].step=myStep;
-
           
-          if(myStep > 3) {
-              users[myId].step = 99;
+          updateStep(steps + 1);
+          
+          if(steps > 3) {
+            updateStep(99);
           }
-      }
+    }
 
-  }
+  
 });
 
 
@@ -181,6 +191,19 @@ function writeUserData(deviceId, plantType, name) {
         temperature : 0
     });
 }
+
+let updateStep = values => {
+    firebase.database().ref('users/' + lineId).set({
+        deviceId: 0,
+        plantType: 0,
+        name : 0,
+        dht : 0,
+        temperature : 0,
+        steps : values
+      });
+}
+
+
 
 
 
