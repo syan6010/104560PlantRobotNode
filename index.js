@@ -80,18 +80,18 @@ bot.on('message', function (event) {
           }
           else if(steps === 1) {
               event.reply('可以告訴我你的植物種類嗎？');
-              firebase.database().ref(`users/${lineId}`).update({deviceId : textFromUser});
+              firebase.database().ref(`users/${lineId}`).update({deviceId : event.message.text});
           }
           else if(steps === 2) {
               event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
-              firebase.database().ref(`users/${lineId}/plantType`).update({plantType : textFromUser});
+              firebase.database().ref(`users/${lineId}/plantType`).update({plantType : event.message.text});
           }
           else if(steps === 3) {
               event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊');
-              firebase.database().ref(`users/${lineId}/name`).update({name : textFromUser});
+              firebase.database().ref(`users/${lineId}/name`).update({name : event.message.text});
           }
           else if(steps === 99) {
-              switch (textFromUser) {
+              switch (event.message.text) {
                   case 'help' :
                       event.reply({
                           type: 'image',
