@@ -61,7 +61,6 @@ bot.on('message', function (event) {
         firebase.database().ref(`users/${lineId}/steps`).once('value', function (snapshot) {
             if(snapshot.exists()) {
                 qAndAStep = snapshot.val();
-                console.log(qAndAStep)
             } 
             else {
                 firebase.database().ref('users/' + lineId).set({
@@ -69,7 +68,7 @@ bot.on('message', function (event) {
                     plantType: 0,
                     name : 0,
                     dht : 0,
-                    emperature : 0,
+                    temperature : 0,
                     steps : 0
                 });
                 qAndAStep = 0;
