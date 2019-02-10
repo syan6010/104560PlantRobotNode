@@ -56,7 +56,6 @@ bot.on('message', function (event) {
   // var myReply='';
     if (event.message.type === 'text') {
         lineId = event.source.userId;
-        textFromUser = event.message.text;
 
         firebase.database().ref(`users/${lineId}/steps`).once('value', function (snapshot) {
             if(snapshot.exists()) {
@@ -149,10 +148,24 @@ bot.on('message', function (event) {
             event.reply('hello worlds');
         }
           
-        updateStep(qAndAStep + 1);
+        firebase.database().ref('users/' + lineId).set({
+            deviceId: 0,
+            plantType: 0,
+            name : 0,
+            dht : 0,
+            temperature : 0,
+            steps : qAndAStep + 1
+        });
           
         if(qAndAStep > 3) {
-            updateStep(99);
+            firebase.database().ref('users/' + lineId).set({
+                deviceId: 0,
+                plantType: 0,
+                name : 0,
+                dht : 0,
+                temperature : 0,
+                steps : 99
+            });
         };
     }  
 });
@@ -170,14 +183,7 @@ function writeUserData(deviceId, plantType, name) {
 }
 
 let updateStep = values => {
-    firebase.database().ref('users/' + lineId).set({
-        deviceId: 0,
-        plantType: 0,
-        name : 0,
-        dht : 0,
-        temperature : 0,
-        steps : values
-    });
+
 }
 
 
