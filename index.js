@@ -146,7 +146,7 @@ bot.on('message', function (event) {
         //         default:
         //             event.reply('我不能這麼做');
         //       }
-            event.reply('hello worlds');
+            event.reply('shello worlds');
         }
           
         firebase.database().ref('users/' + lineId).set({
