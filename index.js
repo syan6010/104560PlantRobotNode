@@ -146,7 +146,7 @@ bot.on('message', function (event) {
         //         default:
         //             event.reply('我不能這麼做');
         //       }
-            event.reply('hello world');
+            event.reply('hello worlds');
         }
           
         updateStep(qAndAStep + 1);
