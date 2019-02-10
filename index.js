@@ -80,17 +80,12 @@ bot.on('message', function (event) {
         }
         else if(qAndAStep === 1) {
             event.reply('可以告訴我你的植物種類嗎？');
-            var updates = {};
-            updates[`users/${lineId}`] = {deviceId : event.message.text};
-            firebase.database().ref().update(updates);
         }
         else if(qAndAStep === 2) {
             event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
-            firebase.database().ref(`users/${lineId}`).update({plantType : event.message.text});
         }
         else if(qAndAStep === 3) {
             event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊');
-            firebase.database().ref(`users/${lineId}`).update({name : event.message.text});
         }
         else if(qAndAStep === 99) {
             switch (event.message.text) {
