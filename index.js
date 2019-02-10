@@ -60,6 +60,7 @@ bot.on('message', function (event) {
         firebase.database().ref(`users/${lineId}/steps`).once('value', function (snapshot) {
             if(snapshot.exists()) {
                 qAndAStep = snapshot.val();
+                console.log(qAndAStep);
             } 
             else {
                 firebase.database().ref('users/' + lineId).set({
