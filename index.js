@@ -72,6 +72,7 @@ bot.on('message', function (event) {
                     emperature : 0,
                     steps : 0
                 });
+                qAndAStep = 0;
             }
         });
 
