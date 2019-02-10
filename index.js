@@ -48,7 +48,7 @@ let deviceId;
 let name;
 let plantType;
 let lineId;
-let qAndAStep;
+var qAndAStep;
 let textFromUser;
 
 
