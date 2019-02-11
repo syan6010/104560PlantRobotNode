@@ -30,13 +30,13 @@ var rgbled;
 var myBoardVars={board: 'Smart', device: '10Q4LapQ', transport: 'mqtt'};
 
 
-boardReady(myBoardVars, true, function (board) {
-    myBoard=board;
-    board.systemReset();
-    board.samplingInterval = 50;
-    rgbled = getRGBLedCathode(board, 15, 12, 13);
-    rgbled.setColor('#000000');
- });
+// boardReady(myBoardVars, true, function (board) {
+//     myBoard=board;
+//     board.systemReset();
+//     board.samplingInterval = 50;
+//     rgbled = getRGBLedCathode(board, 15, 12, 13);
+//     rgbled.setColor('#000000');
+//  });
   
 
 
@@ -196,14 +196,14 @@ function writeUserData(deviceId, plantType, name) {
 
 
 
-function deviceIsConnected(){
-    if (myBoard===undefined)
-       return false;
-    else if (myBoard.isConnected===undefined)
-       return false;
-    else
-       return myBoard.isConnected;
- }
+// function deviceIsConnected(){
+//     if (myBoard===undefined)
+//        return false;
+//     else if (myBoard.isConnected===undefined)
+//        return false;
+//     else
+//        return myBoard.isConnected;
+//  }
  
  
  
