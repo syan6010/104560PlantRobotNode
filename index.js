@@ -63,7 +63,7 @@ let lineId;
 var qAndAStep;
 let textFromUser;
 
-rgbled.setColor('#ffffff');
+
 
 
 bot.on('message', function (event) {
