@@ -138,13 +138,13 @@ bot.on('message', function (event) {
                     //     myResult='LED已打開！';
                     //     rgbled.setColor('#ffffff');                   
                     // }
-                    // boardReady(board_info, function (board) {
-                    //     myBoard = board;
-                    //     board.systemReset();
-                    //     board.samplingInterval = 50;
-                    //     rgbled = getRGBLedCathode(board, 15, 12, 13);
-                    //     rgbled.setColor('#ffffff');
-                    //   });
+                    boardReady(board_info, function (board) {
+                        myBoard = board;
+                        board.systemReset();
+                        board.samplingInterval = 50;
+                        rgbled = getRGBLedCathode(board, 15, 12, 13);
+                        rgbled.setColor('#ffffff');
+                      });
                     break;
                 case 'led關' :
                     if (!deviceIsConnected())
