@@ -169,18 +169,19 @@ bot.on('message', function (event) {
             });
         };
     }  
+    boardReady(board_info, function (board) {
+        myBoard = board;
+        board.systemReset();
+        board.samplingInterval = 50;
+        rgbled = getRGBLedCathode(board, 15, 12, 13);
+        rgbled.setColor('#000000');
+        if(ledOn === true) {
+            rgbled.setColor('#ffffff');
+        }
+    });
 });
 
-boardReady(board_info, function (board) {
-    myBoard = board;
-    board.systemReset();
-    board.samplingInterval = 50;
-    rgbled = getRGBLedCathode(board, 15, 12, 13);
-    rgbled.setColor('#000000');
-    if(ledOn === true) {
-        rgbled.setColor('#ffffff');
-    }
-});
+
   
 
 
