@@ -123,7 +123,7 @@ bot.on('message', function (event) {
                                 event.reply(deviceIsConnected());
                             else{                       
                                 myResult='LED已打開！';
-                                rgbled.setColor('#ffffff');                   
+                                // rgbled.setColor('#ffffff');                   
                             }
                             break;
                         case 'led關' :
