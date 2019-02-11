@@ -45,8 +45,7 @@ boardReady(myBoardVars, true, function (board) {
     rgbled = getRGBLedCathode(board, 15, 12, 13);
     rgbled.setColor('#000000');
  });
-
- rgbled.setColor('#ffffff');  
+  
 
 
 
@@ -71,22 +70,23 @@ bot.on('message', function (event) {
     if (event.message.type === 'text') {
         lineId = event.source.userId;
 
-        firebase.database().ref(`users/${lineId}/steps`).on('value', function (snapshot) {
-            if(snapshot.exists()) {
-                qAndAStep = snapshot.val();
-            } 
-            else {
-                firebase.database().ref('users/' + lineId).set({
-                    deviceId: 0,
-                    plantType: 0,
-                    name : 0,
-                    dht : 0,
-                    temperature : 0,
-                    steps : 0
-                });
-                qAndAStep = 0;
-            }
-        });
+        // firebase.database().ref(`users/${lineId}/steps`).on('value', function (snapshot) {
+        //     if(snapshot.exists()) {
+        //         qAndAStep = snapshot.val();
+        //     } 
+        //     else {
+        //         firebase.database().ref('users/' + lineId).set({
+        //             deviceId: 0,
+        //             plantType: 0,
+        //             name : 0,
+        //             dht : 0,
+        //             temperature : 0,
+        //             steps : 0
+        //         });
+        //         qAndAStep = 0;
+        //     }
+        // });
+        qAndAStep = 99;
 
         if (qAndAStep === 0 ) {
             event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
