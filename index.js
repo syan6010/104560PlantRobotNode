@@ -186,11 +186,9 @@ function writeUserData(deviceId, plantType, name) {
 
 function deviceIsConnected(){
   if (myBoard===undefined){
-    console.log('first error')
     return false;
   }   
   else if (myBoard.isConnected===undefined) {
-    console.log('first error')
     return false;
   }
   else
