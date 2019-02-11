@@ -119,8 +119,7 @@ bot.on('message', function (event) {
                             break;
                         case 'led開' :
                             if (!deviceIsConnected())
-                                // event.reply('裝置未連接');
-                                break;
+                                event.reply(deviceIsConnected());
                             else{                       
                                 myResult='LED已打開！';
                                 rgbled.setColor('#ffffff');                   
@@ -199,11 +198,9 @@ function writeUserData(deviceId, plantType, name) {
 
 function deviceIsConnected(){
     if (myBoard===undefined){
-        // event.reply('wrong one');
         return false;
     }
     else if (myBoard.isConnected===undefined) {
-        // event.reply('wrong two');
         return false;
     }
     else
