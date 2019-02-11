@@ -181,31 +181,7 @@ bot.on('message', function (event) {
             });
         };
     }  
-    // if (event.message.type === 'text') {
-    //     switch(event.message.text) {
-    //         case 'led開' :
-    //                 if (!deviceIsConnected())
-    //                     event.reply('裝置未連接');
-    //                 else{                       
-    //                     myResult='LED已打開！';
-    //                     rgbled.setColor('#ffffff');                   
-    //                 }
-    //                 break;
-    //         case 'led關' :
-    //                 if (!deviceIsConnected())
-    //                     event.reply('裝置未連接');
-    //                 else{
-    //                     myResult='LED已關閉！';
-    //                     rgbled.setColor('#000000');
-    //                 }
-    //                 break;
-    //         default:
-    //                 event.reply('我不能這麼做');
-              
-                
-    //     }
-    // }
-
+   
 });
 
 
