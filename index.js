@@ -132,7 +132,7 @@ bot.on('message', function (event) {
                         event.reply('裝置未連接');
                     else{                       
                         event.reply('LED已開啟！');
-                        // rgbled.setColor('#ffffff');                   
+                        rgbled.setColor('#ffffff');                   
                     }
                     break;
                 case 'led關' :
@@ -140,7 +140,7 @@ bot.on('message', function (event) {
                         event.reply('裝置未連接');
                     else{
                         event.reply('LED關閉！');
-                        // rgbled.setColor('#000000');
+                        rgbled.setColor('#000000');
                     }
                     break;
                 default:
