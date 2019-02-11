@@ -131,7 +131,7 @@ bot.on('message', function (event) {
                     if (false)
                         event.reply('裝置未連接');
                     else{                       
-                        myResult='LED已打開！';
+                        event.reply('LED已開啟！');
                         // rgbled.setColor('#ffffff');                   
                     }
                     break;
@@ -139,7 +139,7 @@ bot.on('message', function (event) {
                     if (false)
                         event.reply('裝置未連接');
                     else{
-                        myResult='LED已關閉！';
+                        event.reply('LED關閉！');
                         // rgbled.setColor('#000000');
                     }
                     break;
