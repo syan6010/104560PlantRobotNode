@@ -127,7 +127,7 @@ bot.on('message', function (event) {
                     event.reply('ok輸入y開始重新設定');
                     break;
                 case 'led開' :
-                    if (!deviceIsConnected())
+                    if (deviceIsConnected())
                         event.reply('裝置未連接');
                     else{                       
                         myResult='LED已打開！';
