@@ -189,9 +189,11 @@ function writeUserData(deviceId, plantType, name) {
 
 function deviceIsConnected(){
   if (myBoard===undefined){
+    console.log("App now running on port");
     return false;
   }   
   else if (myBoard.isConnected===undefined) {
+    console.log("App now running on port");
     return false;
   }
   else
