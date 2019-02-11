@@ -65,7 +65,9 @@ bot.on('message', function (event) {
         firebase.database().ref(`users/${lineId}/steps`).on('value', function (snapshot) {
             if(snapshot.exists()) {
                 qAndAStep = snapshot.val();
-                event.reply('hello');
+                if(qAndAStep === 99) {
+                    event.reply('99');
+                }
             } 
             else {
                 firebase.database().ref('users/' + lineId).set({
