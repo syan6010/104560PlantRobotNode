@@ -118,22 +118,22 @@ bot.on('message', function (event) {
                             qAndAStep = -1; 
                             event.reply('ok輸入y開始重新設定');
                             break;
-                        // case 'led開' :
-                        //     if (deviceIsConnected() === 'false1' || deviceIsConnected() === 'false2')
-                        //         event.reply(deviceIsConnected());
-                        //     else{                       
-                        //         myResult='LED已打開！';
-                        //         rgbled.setColor('#ffffff');                   
-                        //     }
-                        //     break;
-                        // case 'led關' :
-                        //     if (!deviceIsConnected())
-                        //         event.reply('裝置未連接');
-                        //     else{
-                        //         myResult='LED已關閉！';
-                        //         rgbled.setColor('#000000');
-                        //     }
-                        //     break;
+                        case 'led開' :
+                            if (deviceIsConnected() === 'false1' || deviceIsConnected() === 'false2')
+                                event.reply(deviceIsConnected());
+                            else{                       
+                                myResult='LED已打開！';
+                                // rgbled.setColor('#ffffff');                   
+                            }
+                            break;
+                        case 'led關' :
+                            if (!deviceIsConnected())
+                                event.reply('裝置未連接');
+                            else{
+                                myResult='LED已關閉！';
+                                // rgbled.setColor('#000000');
+                            }
+                            break;
                         default:
                             event.reply('我不能這麼做');
                       }
@@ -197,16 +197,16 @@ function writeUserData(deviceId, plantType, name) {
 
 
 
-function deviceIsConnected(){
-    if (myBoard===undefined){
-        return 'false1';
-    }
-    else if (myBoard.isConnected===undefined) {
-        return 'false2';
-    }
-    else
-       return myBoard.isConnected;
- }
+// function deviceIsConnected(){
+//     if (myBoard===undefined){
+//         return 'false1';
+//     }
+//     else if (myBoard.isConnected===undefined) {
+//         return 'false2';
+//     }
+//     else
+//        return myBoard.isConnected;
+//  }
  
  
  
