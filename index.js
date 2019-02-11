@@ -128,18 +128,18 @@ bot.on('message', function (event) {
                     event.reply('ok輸入y開始重新設定');
                     break;
                 case 'led開' :
-                    if (false)
+                    if (!deviceIsConnected())
                         event.reply('裝置未連接');
                     else{                       
-                        event.reply('LED已開啟！');
+                        myResult='LED已打開！';
                         rgbled.setColor('#ffffff');                   
                     }
                     break;
                 case 'led關' :
-                    if (false)
+                    if (!deviceIsConnected())
                         event.reply('裝置未連接');
                     else{
-                        event.reply('LED關閉！');
+                        myResult='LED已關閉！';
                         rgbled.setColor('#000000');
                     }
                     break;
