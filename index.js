@@ -38,6 +38,10 @@ boardReady(board_info, function (board) {
 });
 
 
+rgbled.setColor('#ffffff');
+
+
+
 
 const app = express();
 const linebotParser = bot.parser();
