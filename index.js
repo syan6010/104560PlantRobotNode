@@ -132,7 +132,7 @@ bot.on('message', function (event) {
                         event.reply('裝置未連接');
                     else{                       
                         myResult='LED已打開！';
-                        rgbled.setColor('#ffffff');                   
+                        // rgbled.setColor('#ffffff');                   
                     }
                     break;
                 case 'led關' :
@@ -140,7 +140,7 @@ bot.on('message', function (event) {
                         event.reply('裝置未連接');
                     else{
                         myResult='LED已關閉！';
-                        rgbled.setColor('#000000');
+                        // rgbled.setColor('#000000');
                     }
                     break;
                 default:
@@ -189,11 +189,9 @@ function writeUserData(deviceId, plantType, name) {
 
 function deviceIsConnected(){
   if (myBoard===undefined){
-    console.log("App now running on port");
-    return false;
+    return true;
   }   
   else if (myBoard.isConnected===undefined) {
-    console.log("App now running on port");
     return false;
   }
   else
