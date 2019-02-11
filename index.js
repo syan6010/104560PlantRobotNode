@@ -192,7 +192,7 @@ function deviceIsConnected(){
     return true;
   }   
   else if (myBoard.isConnected===undefined) {
-    return false;
+    return true;
   }
   else
      return myBoard.isConnected;
