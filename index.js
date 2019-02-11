@@ -30,13 +30,13 @@ var rgbled;
 var myBoardVars={board: 'Smart', device: '10Q4LapQ', transport: 'mqtt'};
 
 
-// boardReady(myBoardVars, true, function (board) {
-//     myBoard=board;
-//     board.systemReset();
-//     board.samplingInterval = 50;
-//     rgbled = getRGBLedCathode(board, 15, 12, 13);
-//     rgbled.setColor('#000000');
-//  });
+boardReady(myBoardVars, true, function (board) {
+    myBoard=board;
+    board.systemReset();
+    board.samplingInterval = 50;
+    rgbled = getRGBLedCathode(board, 15, 12, 13);
+    rgbled.setColor('#000000');
+ });
   
 
 
@@ -119,7 +119,8 @@ bot.on('message', function (event) {
                             break;
                         case 'led開' :
                             if (!deviceIsConnected())
-                                event.reply('裝置未連接');
+                                // event.reply('裝置未連接');
+                                break;
                             else{                       
                                 myResult='LED已打開！';
                                 rgbled.setColor('#ffffff');                   
@@ -196,14 +197,18 @@ function writeUserData(deviceId, plantType, name) {
 
 
 
-// function deviceIsConnected(){
-//     if (myBoard===undefined)
-//        return false;
-//     else if (myBoard.isConnected===undefined)
-//        return false;
-//     else
-//        return myBoard.isConnected;
-//  }
+function deviceIsConnected(){
+    if (myBoard===undefined){
+        event.reply('wrong one');
+        return false;
+    }
+    else if (myBoard.isConnected===undefined) {
+        event.reply('wrong two');
+        return false;
+    }
+    else
+       return myBoard.isConnected;
+ }
  
  
  
