@@ -118,7 +118,7 @@ bot.on('message', function (event) {
                             event.reply('ok輸入y開始重新設定');
                             break;
                         case 'led開' :
-                            if (!deviceIsConnected())
+                            if (deviceIsConnected() === 'false1' || deviceIsConnected() === 'false2')
                                 event.reply(deviceIsConnected());
                             else{                       
                                 myResult='LED已打開！';
@@ -198,10 +198,10 @@ function writeUserData(deviceId, plantType, name) {
 
 function deviceIsConnected(){
     if (myBoard===undefined){
-        return false;
+        return 'false1';
     }
     else if (myBoard.isConnected===undefined) {
-        return false;
+        return 'false2';
     }
     else
        return myBoard.isConnected;
