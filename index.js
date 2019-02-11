@@ -38,6 +38,8 @@ boardReady(board_info, function (board) {
  
 });
 
+rgbled.setColor('#ffffff');
+
 const app = express();
 const linebotParser = bot.parser();
 app.post('/linewebhook', linebotParser);
@@ -169,7 +171,7 @@ bot.on('message', function (event) {
     }  
 });
 
-rgbled.setColor('#ffffff');
+
 
 
 
