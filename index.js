@@ -132,19 +132,12 @@ bot.on('message', function (event) {
                     event.reply('ok輸入y開始重新設定');
                     break;
                 case 'led開' :
-                    // if (!deviceIsConnected())
-                    //     event.reply('裝置未連接');
-                    // else{                       
-                    //     myResult='LED已打開！';
-                    //     rgbled.setColor('#ffffff');                   
-                    // }
-                    boardReady(board_info, function (board) {
-                        myBoard = board;
-                        board.systemReset();
-                        board.samplingInterval = 50;
-                        rgbled = getRGBLedCathode(board, 15, 12, 13);
-                        rgbled.setColor('#ffffff');
-                      });
+                    if (!deviceIsConnected())
+                        event.reply('裝置未連接');
+                    else{                       
+                        myResult='LED已打開！';
+                        rgbled.setColor('#ffffff');                   
+                    }
                     break;
                 case 'led關' :
                     if (!deviceIsConnected())
