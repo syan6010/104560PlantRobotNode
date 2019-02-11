@@ -30,14 +30,7 @@ var rgbled;
 var myBoardVars={board: 'Smart', device: '10Q4LapQ', transport: 'mqtt'};
 
 
-boardReady(myBoardVars, true, function (board) {
-    myBoard=board;
-    board.systemReset();
-    board.samplingInterval = 50;
-    rgbled = getRGBLedCathode(board, 15, 12, 13);
-    rgbled.setColor('#000000');
- });
-  
+
 
 
 
@@ -61,6 +54,14 @@ bot.on('message', function (event) {
   // var myReply='';
     if (event.message.type === 'text') {
         lineId = event.source.userId;
+        boardReady(myBoardVars, true, function (board) {
+            myBoard=board;
+            board.systemReset();
+            board.samplingInterval = 50;
+            rgbled = getRGBLedCathode(board, 15, 12, 13);
+            rgbled.setColor('#000000');
+         });
+          
 
         firebase.database().ref(`users/${lineId}/steps`).on('value', function (snapshot) {
             if(snapshot.exists()) {
