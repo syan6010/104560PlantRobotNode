@@ -131,8 +131,18 @@ bot.on('message', function (event) {
                     if (!deviceIsConnected())
                         event.reply('裝置未連接');
                     else{
+                        let timesRun = 0;
                         myResult='LED已打開！';
-                        rgbled.setColor('#FFFFFF');
+                        let interval = setInterval(() => {
+                            timesRun += 1;
+                            if(timesRun === 5){
+                            clearInterval(interval);
+                            }
+                            rgbled.setColor('#FFFFFF');
+                            setTimeout(() => {
+                                rgbled.setColor('#000000');
+                            }, 1000)
+                        }, 3000);                      
                     }
                     break;
                 case 'led關' :
