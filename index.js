@@ -29,15 +29,17 @@ var rgbled;
 
 var myBoardVars={board: 'Smart', device: '10Q4LapQ', transport: 'mqtt'};
 
+let boardUp = () => {
+    boardReady(myBoardVars, true, function (board) {
+        myBoard=board;
+        board.systemReset();
+        board.samplingInterval = 50;
+        rgbled = getRGBLedCathode(board, 15, 12, 13);
+        rgbled.setColor('#000000');
+     });    
+}
 
-boardReady(myBoardVars, true, function (board) {
-    myBoard=board;
-    board.systemReset();
-    board.samplingInterval = 50;
-    rgbled = getRGBLedCathode(board, 15, 12, 13);
-    rgbled.setColor('#000000');
- });
-  
+
 
 
 
@@ -118,6 +120,7 @@ bot.on('message', function (event) {
                             event.reply('ok輸入y開始重新設定');
                             break;
                         case 'led開' :
+                            boardUp();
                             if (!deviceIsConnected())
                                 event.reply('裝置未連接');
                             else{                       
