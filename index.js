@@ -70,23 +70,23 @@ bot.on('message', function (event) {
     if (event.message.type === 'text') {
         lineId = event.source.userId;
 
-        // firebase.database().ref(`users/${lineId}/steps`).on('value', function (snapshot) {
-        //     if(snapshot.exists()) {
-        //         qAndAStep = snapshot.val();
-        //     } 
-        //     else {
-        //         firebase.database().ref('users/' + lineId).set({
-        //             deviceId: 0,
-        //             plantType: 0,
-        //             name : 0,
-        //             dht : 0,
-        //             temperature : 0,
-        //             steps : 0
-        //         });
-        //         qAndAStep = 0;
-        //     }
-        // });
-        getData();
+        firebase.database().ref(`users/${lineId}/steps`).on('value', function (snapshot) {
+            if(snapshot.exists()) {
+                qAndAStep = snapshot.val();
+            } 
+            else {
+                firebase.database().ref('users/' + lineId).set({
+                    deviceId: 0,
+                    plantType: 0,
+                    name : 0,
+                    dht : 0,
+                    temperature : 0,
+                    steps : 0
+                });
+                qAndAStep = 0;
+            }
+        });
+       
 
         if (qAndAStep === 0 ) {
             event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
@@ -197,25 +197,6 @@ function writeUserData(deviceId, plantType, name) {
         name : name,
         dht : 0,
         temperature : 0
-    });
-}
-
-let getData = ()=> {
-    firebase.database().ref(`users/${lineId}/steps`).on('value', function (snapshot) {
-        if(snapshot.exists()) {
-            qAndAStep = snapshot.val();
-        } 
-        else {
-            firebase.database().ref('users/' + lineId).set({
-                deviceId: 0,
-                plantType: 0,
-                name : 0,
-                dht : 0,
-                temperature : 0,
-                steps : 0
-            });
-            qAndAStep = 0;
-        }
     });
 }
 
