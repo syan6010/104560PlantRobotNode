@@ -199,11 +199,11 @@ function writeUserData(deviceId, plantType, name) {
 
 function deviceIsConnected(){
     if (myBoard===undefined){
-        event.reply('wrong one');
+        // event.reply('wrong one');
         return false;
     }
     else if (myBoard.isConnected===undefined) {
-        event.reply('wrong two');
+        // event.reply('wrong two');
         return false;
     }
     else
