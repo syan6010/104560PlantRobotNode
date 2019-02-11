@@ -131,7 +131,7 @@ bot.on('message', function (event) {
                                 event.reply('裝置未連接');
                             else{
                                 myResult='LED已關閉！';
-                                // rgbled.setColor('#000000');
+                                rgbled.setColor('#000000');
                             }
                             break;
                         default:
@@ -197,16 +197,16 @@ function writeUserData(deviceId, plantType, name) {
 
 
 
-// function deviceIsConnected(){
-//     if (myBoard===undefined){
-//         return 'false1';
-//     }
-//     else if (myBoard.isConnected===undefined) {
-//         return 'false2';
-//     }
-//     else
-//        return myBoard.isConnected;
-//  }
+function deviceIsConnected(){
+    if (myBoard===undefined){
+        return 'false1';
+    }
+    else if (myBoard.isConnected===undefined) {
+        return 'false2';
+    }
+    else
+       return myBoard.isConnected;
+ }
  
  
  
