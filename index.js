@@ -35,10 +35,11 @@ boardReady(board_info, function (board) {
   board.samplingInterval = 50;
   rgbled = getRGBLedCathode(board, 15, 12, 13);
   rgbled.setColor('#000000');
+  rgbled.setColor('#ffffff');
  
 });
 
-rgbled.setColor('#ffffff');
+
 
 const app = express();
 const linebotParser = bot.parser();
