@@ -192,14 +192,6 @@ function writeUserData(deviceId, plantType, name) {
     });
 }
 
-let updateStep = values => {
-
-}
-
-
-
-
-
 
 
 
