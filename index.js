@@ -84,7 +84,7 @@ bot.on('message', function (event) {
                                     previewImageUrl: 'https://d.line-scdn.net/stf/line-lp/family/en-US/190X190_line_me.png'
                                 });
                                 break;
-                            case 'ok' :
+                            case 'okGoogle' :
                                 firebase.database().ref(`users/${lineId}/plantType`).once('value', function (snapshot) {
                                     var data = snapshot.val();
                                     switch (data) {
