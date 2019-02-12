@@ -171,7 +171,9 @@ bot.on('message', function (event) {
                     steps : 99
                 });
             };
-         });
+        });
+
+         event.reply('mada');
           
 
 
