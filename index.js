@@ -54,15 +54,9 @@ bot.on('message', function (event) {
   // var myReply='';
     if (event.message.type === 'text') {
         lineId = event.source.userId;
-        boardReady(myBoardVars, true, function (board) {
-            myBoard=board;
-            board.systemReset();
-            board.samplingInterval = 50;
-            rgbled = getRGBLedCathode(board, 15, 12, 13);
-            rgbled.setColor('#000000');
-        });
+        
 
-        firebase.database().ref(`users/${lineId}/steps`).on('value', function (snapshot) {
+        firebase.database().ref(`users/${lineId}/steps`).on('value', async function (snapshot) {
             if(snapshot.exists()) {
                 qAndAStep = snapshot.val();
                 if (qAndAStep === 0 ) {
@@ -78,6 +72,13 @@ bot.on('message', function (event) {
                     event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊');
                 }
                 else if(qAndAStep === 99) {
+                    await boardReady(myBoardVars, true, function (board) {
+                        myBoard=board;
+                        board.systemReset();
+                        board.samplingInterval = 50;
+                        rgbled = getRGBLedCathode(board, 15, 12, 13);
+                        rgbled.setColor('#000000');
+                    });
                     switch (event.message.text) {
                         case 'help' :
                             event.reply({
