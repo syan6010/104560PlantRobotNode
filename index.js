@@ -181,10 +181,10 @@ bot.on('message', function (event) {
 
 function deviceIsConnected(){
     if (myBoard===undefined){
-        return 'false1';
+        return false;
     }
     else if (myBoard.isConnected===undefined) {
-        return 'false2';
+        return false;
     }
     else
        return myBoard.isConnected;
