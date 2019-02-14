@@ -179,7 +179,7 @@ function deviceIsConnected(){
  }
 
  let updateData = (lineId, postKey, postData) => {
-      var updates = {};
+      let updates = {};
       updates[`users/${lineId}/${postKey}`] = postData;
     
       return firebase.database().ref().update(updates);
