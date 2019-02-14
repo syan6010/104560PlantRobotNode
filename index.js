@@ -68,7 +68,7 @@ bot.on('message', function (event) {
                 }
                 else if(qAndAStep === 1) {
                     event.reply('可以告訴我你的植物種類嗎？');
-                    updateData(lineId, {deviceId : event.message.text});
+                    // updateData(lineId, {deviceId : event.message.text});
 
                 }
                 else if(qAndAStep === 2) {
