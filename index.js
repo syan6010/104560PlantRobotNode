@@ -70,7 +70,7 @@ bot.on('message', function (event) {
             if(snapshot.exists()) {
                 qAndAStep = snapshot.val();
                 if (qAndAStep === 0 ) {
-                    event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
+                    await event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
                 } else if(qAndAStep === 1) {
                     event.reply('可以告訴我你的植物種類嗎？');
                     updateData(lineId, "deviceId", event.message.text);
