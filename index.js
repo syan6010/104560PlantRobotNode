@@ -62,7 +62,7 @@ bot.on('message', function (event) {
 
         firebase.database().ref(`users/${lineId}/steps`).on('value', async function (snapshot) {
             if(snapshot.exists()) {
-                qAndAStep = await snapshot.val();
+                qAndAStep = snapshot.val();
                 if (qAndAStep === 0 ) {
                     await event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
                 }
