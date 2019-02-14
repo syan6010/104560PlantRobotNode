@@ -64,18 +64,18 @@ bot.on('message', function (event) {
             if(snapshot.exists()) {
                 qAndAStep = await snapshot.val();
                 if (qAndAStep === 0 ) {
-                    event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
+                    await event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
                 }
                 else if(qAndAStep === 1) {
-                    event.reply('可以告訴我你的植物種類嗎？');
+                    await event.reply('可以告訴我你的植物種類嗎？');
                     await updateData(lineId, "deviceId", event.message.text);
                 }
                 else if(qAndAStep === 2) {
-                    event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
+                    await event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
                     await updateData(lineId, "plantType", event.message.text);
                 }
                 else if(qAndAStep === 3) {
-                    event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊');
+                    await event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊');
                     await updateData(lineId, "name", event.message.text);
                 }
                 else if(qAndAStep === 99) {
