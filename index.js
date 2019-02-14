@@ -165,10 +165,10 @@ bot.on('message', function (event) {
         //     steps : qAndAStep + 1
         // });
 
-        updateData(lineId, "steps" ,qAndAStep+1);
+        await updateData(lineId, "steps" ,qAndAStep+1);
           
         if(qAndAStep > 3) {
-            updateData(lineId, "steps", 99);
+            await updateData(lineId, "steps", 99);
         };
     }  
    
