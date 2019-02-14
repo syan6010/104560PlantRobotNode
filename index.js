@@ -163,7 +163,7 @@ bot.on('message', function (event) {
         //     steps : qAndAStep + 1
         // });
 
-        updateData(lineId, qAndAStep+1);
+        updateData(lineId, "steps" ,qAndAStep+1);
           
         if(qAndAStep > 3) {
             firebase.database().ref('users/' + lineId).set({
@@ -192,9 +192,9 @@ function deviceIsConnected(){
        return myBoard.isConnected;
  }
 
- let updateData = (lineId, postData) => {
+ let updateData = (lineId, postKey, postData) => {
       var updates = {};
-      updates[`users/${lineId}/steps`] = postData;
+      updates[`users/${lineId}/${postKey}`] = postData;
     
       return firebase.database().ref().update(updates);
  }
