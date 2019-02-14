@@ -65,6 +65,7 @@ bot.on('message', function (event) {
                 qAndAStep = snapshot.val();
                 if (qAndAStep === 0 ) {
                     await event.reply('你好!!歡迎來到plantRobot!!第一次設定需要輸入webduino裝置的ID才可以讓我順利上網歐！！');
+                    updateData(lineId, "steps" ,qAndAStep+1);
                 }
                 else if(qAndAStep === 1) {
                     event.reply('可以告訴我你的植物種類嗎？');
@@ -154,16 +155,6 @@ bot.on('message', function (event) {
        
 
         
-          
-        // firebase.database().ref('users/' + lineId).set({
-        //     deviceId: 0,
-        //     plantType: 0,
-        //     name : 0,
-        //     dht : 0,
-        //     temperature : 0,
-        //     steps : qAndAStep + 1
-        // });
-
         updateData(lineId, "steps" ,qAndAStep+1);
           
         if(qAndAStep > 3) {
