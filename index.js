@@ -162,6 +162,8 @@ bot.on('message', function (event) {
             temperature : 0,
             steps : qAndAStep + 1
         });
+
+        updateData(lineId, {steps : qAndAStep + 1});
           
         if(qAndAStep > 3) {
             firebase.database().ref('users/' + lineId).set({
