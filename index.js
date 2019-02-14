@@ -155,11 +155,11 @@ bot.on('message', function (event) {
        
 
         
-        updateData(lineId, "steps" ,qAndAStep+1);
+        // updateData(lineId, "steps" ,qAndAStep+1);
           
-        if(qAndAStep > 3) {
-            updateData(lineId, "steps", 99);
-        };
+        // if(qAndAStep > 3) {
+        //     updateData(lineId, "steps", 99);
+        // };
     }  
    
 });
