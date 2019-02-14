@@ -163,7 +163,7 @@ bot.on('message', function (event) {
         //     steps : qAndAStep + 1
         // });
 
-        updateData(lineId, {steps : qAndAStep + 1});
+        updateData(lineId, qAndAStep+1);
           
         if(qAndAStep > 3) {
             firebase.database().ref('users/' + lineId).set({
