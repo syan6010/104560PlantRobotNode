@@ -140,6 +140,12 @@ bot.on('message', function (event) {
                             event.reply('我不能這麼做');
                       }
                 }
+
+                updateData(lineId, "steps" ,qAndAStep+1);
+          
+                if(qAndAStep > 3) {
+                    updateData(lineId, "steps", 99);
+                };
             } 
             else {
                 firebase.database().ref('users/' + lineId).set({
@@ -156,11 +162,7 @@ bot.on('message', function (event) {
        
 
         
-        updateData(lineId, "steps" ,qAndAStep+1);
-          
-        if(qAndAStep > 3) {
-            updateData(lineId, "steps", 99);
-        };
+
     }  
    
 });
