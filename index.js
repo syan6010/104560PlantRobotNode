@@ -154,14 +154,14 @@ bot.on('message', function (event) {
 
         
           
-        firebase.database().ref('users/' + lineId).set({
-            deviceId: 0,
-            plantType: 0,
-            name : 0,
-            dht : 0,
-            temperature : 0,
-            steps : qAndAStep + 1
-        });
+        // firebase.database().ref('users/' + lineId).set({
+        //     deviceId: 0,
+        //     plantType: 0,
+        //     name : 0,
+        //     dht : 0,
+        //     temperature : 0,
+        //     steps : qAndAStep + 1
+        // });
 
         updateData(lineId, {steps : qAndAStep + 1});
           
