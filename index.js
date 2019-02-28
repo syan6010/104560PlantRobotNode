@@ -137,7 +137,7 @@ bot.on('message', function (event) {
                             }
                             break;
                         default:
-                            event.reply('我不能這麼做');
+                            event.reply('我不能這麼做!!');
                       }
                 }
 
