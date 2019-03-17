@@ -27,7 +27,7 @@ var bot = linebot({
 var myBoard;
 var rgbled;
 
-// var myBoardVars={board: 'Smart', device: '10Q4LapQ', transport: 'mqtt'};
+var myBoardVars={board: 'Smart', device: '10Q4LapQ', transport: 'mqtt'};
 
 
 
@@ -50,13 +50,13 @@ let lineId;
 var qAndAStep;
 // let textFromUser;
 
-// boardReady(myBoardVars, true, function (board) {
-//     myBoard=board;
-//     board.systemReset();
-//     board.samplingInterval = 50;
-//     rgbled = getRGBLedCathode(board, 15, 12, 13);
-//     rgbled.setColor('#000000');
-// });
+boardReady(myBoardVars, true, function (board) {
+    myBoard=board;
+    board.systemReset();
+    board.samplingInterval = 50;
+    rgbled = getRGBLedCathode(board, 15, 12, 13);
+    rgbled.setColor('#000000');
+});
 
 
 
