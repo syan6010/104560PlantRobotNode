@@ -78,7 +78,7 @@ bot.on('message', function (event) {
                     event.reply('謝謝！我們又邁進了一步！！可以讓我知道要怎麼稱呼你嗎？');
                     updateData(lineId, "plantType", event.message.text);
                 } else if(qAndAStep === 3) {
-                    event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊');
+                    event.reply('謝謝接下來我們馬上就可以開始使用了！！輸入OK取得資訊!!');
                     updateData(lineId, "name", event.message.text);
                 } else if(qAndAStep === 99) {
                     switch (event.message.text) {
