@@ -1,5 +1,5 @@
-require('webduino-js');
-require('webduino-blockly');
+// require('webduino-js');
+// require('webduino-blockly');
 
 var linebot = require('linebot');
 var express = require('express');
