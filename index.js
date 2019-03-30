@@ -1,5 +1,5 @@
-// require('webduino-js');
-// require('webduino-blockly');
+require('webduino-js');
+require('webduino-blockly');
 
 var linebot = require('linebot');
 var express = require('express');
@@ -50,13 +50,13 @@ let lineId;
 var qAndAStep;
 // let textFromUser;
 
-// boardReady(myBoardVars, true, function (board) {
-//     myBoard=board;
-//     board.systemReset();
-//     board.samplingInterval = 50;
-//     rgbled = getRGBLedCathode(board, 15, 12, 13);
-//     rgbled.setColor('#000000');
-// });
+boardReady(myBoardVars, true, function (board) {
+    myBoard=board;
+    board.systemReset();
+    board.samplingInterval = 50;
+    rgbled = getRGBLedCathode(board, 15, 12, 13);
+    rgbled.setColor('#000000');
+});
 
 
 
