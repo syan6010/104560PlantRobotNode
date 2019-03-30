@@ -1,7 +1,10 @@
+require('webduino-js');
+require('webduino-blockly');
+
 var linebot = require('linebot');
 var express = require('express');
 var firebase = require("firebase");
-
+ // Initialize Firebase
 var config = {
    apiKey: "AIzaSyAuYBBz0Lm2RJUA5b5BrDcLgZz6DsftlxY",
    authDomain: "mytest-5cc3f.firebaseapp.com",
@@ -21,6 +24,13 @@ var bot = linebot({
   channelAccessToken: 'PatWWFB9frLn/SApYvru/vyfmH+vv44D03A1XQOfq5E982ap0ZOdVLA1EwUBKR0bnQm4Ob3zJvEkTdgAFV+cFbNidJyWUpK+SRslvqiONOfMNQgs1Qm61MpLts/6MiIi1EaI9QelogaUzcECqxRU6AdB04t89/1O/w1cDnyilFU='
 });
 
+var myBoard;
+var rgbled;
+
+var myBoardVars={board: 'Smart', device: '10Q4LapQ', transport: 'mqtt'};
+
+
+
 const app = express();
 const linebotParser = bot.parser();
 app.post('/linewebhook', linebotParser);
@@ -31,9 +41,22 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
   
 
+// var users=[];
+// var totalSteps=3;
+// let deviceId;
+// let name;
+// let plantType;
 let lineId;
 var qAndAStep;
+// let textFromUser;
 
+boardReady(myBoardVars, true, function (board) {
+    myBoard=board;
+    board.systemReset();
+    board.samplingInterval = 50;
+    rgbled = getRGBLedCathode(board, 15, 12, 13);
+    rgbled.setColor('#000000');
+});
 
 
 
@@ -96,6 +119,22 @@ bot.on('message', function (event) {
                             qAndAStep = -1; 
                             event.reply('ok輸入y開始重新設定');
                             break;
+                        // case 'led開' :
+                        //     if (!deviceIsConnected())
+                        //         event.reply('裝置未連接');
+                        //     else{                       
+                        //         myResult='LED已打開！';
+                        //         rgbled.setColor('#ffffff');                   
+                        //     }
+                        //     break;
+                        // case 'led關' :
+                        //     if (!deviceIsConnected())
+                        //         event.reply('裝置未連接');
+                        //     else{
+                        //         myResult='LED已關閉！';
+                        //         rgbled.setColor('#000000');
+                        //     }
+                        //     break;
                         default:
                             event.reply('我不能這麼做!!');
                       }
@@ -128,6 +167,18 @@ bot.on('message', function (event) {
 });
 
 
+
+// function deviceIsConnected(){
+//     if (myBoard===undefined){
+//         return 'false1';
+//     }
+//     else if (myBoard.isConnected===undefined) {
+//         return 'false2';
+//     }
+//     else
+//        return myBoard.isConnected;
+//  }
+
  let updateData = (lineId, postKey, postData) => {
       let updates = {};
       updates[`users/${lineId}/${postKey}`] = postData;
@@ -136,7 +187,3 @@ bot.on('message', function (event) {
  }
  
  
- 
-
-
-
